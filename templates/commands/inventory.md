@@ -86,5 +86,5 @@ $ARGUMENTS
 
 - Completeness over depth. Every column must appear. Descriptions can be brief for obvious columns.
 - Mark confidence honestly. A column named "X1" with no header gets `low` confidence.
-- Preserve analyst resolutions from Phase 1 open questions — if OQ-001 resolved a column name, use that resolution.
+- Preserve analyst resolutions from Phase 1 open questions — if CLR-001 resolved a column name, use that resolution.
 - Don't infer types beyond what the data shows. "Looks like a date" is `observed_type: "string"` with a note "appears to be ISO date format".
