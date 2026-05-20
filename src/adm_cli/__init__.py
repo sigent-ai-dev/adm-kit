@@ -6,6 +6,8 @@ data schemas from messy real-world sources through seven sequential phases.
 
 __version__ = "0.0.1"
 
+from typing import Optional
+
 import typer
 
 app = typer.Typer(
@@ -32,13 +34,14 @@ def init(
 
 
 @app.command()
-def check():
+def check(
+    domain: Optional[str] = typer.Option(None, "--domain", help="Check a specific domain only"),
+):
     """Validate ADM state: phase gates, invariants, traceability."""
-    from rich.console import Console
+    from .check import run_check
 
-    console = Console()
-    console.print("[bold]Checking ADM project state...[/]")
-    console.print("[yellow]Not yet implemented — see issue #5[/]")
+    exit_code = run_check(domain_filter=domain)
+    raise SystemExit(exit_code)
 
 
 @app.command()
