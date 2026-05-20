@@ -1,0 +1,21 @@
+[project]
+name = "adm-cli"
+version = "0.0.1"
+description = "ADM CLI, part of ADM Kit. A tool for Analysis-Driven Modelling — discover and version data schemas from messy sources."
+requires-python = ">=3.11"
+dependencies = [
+    "typer",
+    "rich",
+    "pydantic>=2.0",
+    "platformdirs",
+]
+
+[project.scripts]
+adm = "adm_cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/adm_cli"]
