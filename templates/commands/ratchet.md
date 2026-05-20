@@ -20,10 +20,11 @@ $ARGUMENTS
 ### Gate Check (STRICT)
 
 ALL of the following must be true:
-1. Phase 5 (validate) shows PASS for the thesis version being ratcheted
-2. Zero PENDING invariants remain (all must be confirmed or explicitly removed)
-3. The validation report shows 100% row parsing success
-4. The analyst explicitly confirms the ratchet
+1. Phase 5 (validate) must be complete — `artefacts/<domain>/5-validation/v{N}/report.json` must exist
+2. Validation report shows PASS for the thesis version being ratcheted (100% row parsing success)
+3. Zero PENDING invariants remain (all must be confirmed or explicitly removed)
+4. Zero open CLR-NNN clarifications remain
+5. The analyst explicitly confirms the ratchet
 
 If ANY gate fails: ERROR with specific failures listed.
 

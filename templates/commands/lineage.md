@@ -36,7 +36,7 @@ $ARGUMENTS
 3. **Identify open questions**:
    For anything unclear from the data alone — ambiguous column names, undocumented formulas, sentinel values without documentation — raise as a structured clarification:
    ```markdown
-   ### OQ-NNN
+   ### CLR-NNN
    **Column/Cell**: [reference]
    **Question**: [what's unclear]
    **Impact**: [what downstream phases need this answer for]
@@ -67,7 +67,7 @@ $ARGUMENTS
     { "location": "...", "rule": "...", "enforced": true }
   ],
   "open_questions": [
-    { "id": "OQ-001", "column": "...", "question": "...", "impact": "...", "status": "open" }
+    { "id": "CLR-001", "column": "...", "question": "...", "impact": "...", "status": "open" }
   ]
 }
 ```
