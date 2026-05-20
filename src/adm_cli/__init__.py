@@ -3,6 +3,7 @@
 Bootstrap and manage ADM projects: discover, validate, and version
 data schemas from messy real-world sources through seven sequential phases.
 """
+
 __version__ = "0.0.1"
 
 import typer
@@ -22,36 +23,32 @@ def init(
         "--ai",
         help="AI assistant: claude, gemini, copilot, cursor, q, windsurf",
     ),
+    force: bool = typer.Option(False, "--force", help="Re-initialise existing domain"),
 ):
     """Initialise a new domain for ADM analysis."""
-    from rich.console import Console
-    console = Console()
-    console.print(f"[bold green]Initialising ADM domain:[/] {domain}")
-    if source:
-        console.print(f"[dim]Source:[/] {source}")
-    console.print(f"[dim]AI assistant:[/] {ai}")
-    # TODO: Implement domain scaffolding
-    console.print("[yellow]Not yet implemented — see CONTRIBUTING.md[/]")
+    from .init import run_init
+
+    run_init(domain=domain, source=source, ai=ai, force=force)
 
 
 @app.command()
 def check():
     """Validate ADM state: phase gates, invariants, traceability."""
     from rich.console import Console
+
     console = Console()
     console.print("[bold]Checking ADM project state...[/]")
-    # TODO: Implement validation
-    console.print("[yellow]Not yet implemented — see CONTRIBUTING.md[/]")
+    console.print("[yellow]Not yet implemented — see issue #5[/]")
 
 
 @app.command()
 def status():
     """Show per-domain phase progression."""
     from rich.console import Console
+
     console = Console()
     console.print("[bold]ADM Domain Status[/]")
-    # TODO: Implement status display
-    console.print("[yellow]Not yet implemented — see CONTRIBUTING.md[/]")
+    console.print("[yellow]Not yet implemented — see issue #6[/]")
 
 
 def main():
