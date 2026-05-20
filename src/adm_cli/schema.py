@@ -20,6 +20,7 @@ class DomainState(BaseModel):
     current_phase: Annotated[int, Field(ge=1, le=7)] = 1
     iteration: Annotated[int, Field(ge=1)] = 1
     contract_version: str | None = None
+    source_path: str | None = None
     resolutions: dict[str, ResolutionStatus] = Field(default_factory=dict)
 
     @field_validator("contract_version")
