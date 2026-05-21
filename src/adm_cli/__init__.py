@@ -47,11 +47,9 @@ def check(
 @app.command()
 def status():
     """Show per-domain phase progression."""
-    from rich.console import Console
+    from .status import run_status
 
-    console = Console()
-    console.print("[bold]ADM Domain Status[/]")
-    console.print("[yellow]Not yet implemented — see issue #6[/]")
+    run_status()
 
 
 def main():
