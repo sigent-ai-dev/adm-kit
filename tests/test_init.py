@@ -77,11 +77,11 @@ class TestAgentSupport:
 
     def test_gemini(self, tmp_path: Path):
         run_init(domain="test", source=None, ai="gemini", force=False, project_dir=tmp_path)
-        assert (tmp_path / ".gemini" / "commands" / "adm.lineage.md").exists()
+        assert (tmp_path / ".gemini" / "commands" / "adm.lineage.toml").exists()
 
     def test_copilot(self, tmp_path: Path):
         run_init(domain="test", source=None, ai="copilot", force=False, project_dir=tmp_path)
-        assert (tmp_path / ".github" / "agents" / "adm.lineage.md").exists()
+        assert (tmp_path / ".github" / "agents" / "adm-lineage.md").exists()
 
     def test_unknown_agent_fails(self, tmp_path: Path):
         with pytest.raises(SystemExit):
