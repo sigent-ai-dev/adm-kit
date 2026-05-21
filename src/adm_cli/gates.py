@@ -81,7 +81,7 @@ def can_advance(
     if missing:
         return False, f"Missing required artefacts in {phase_dir_name}/: {', '.join(missing)}"
 
-    # Ratchet gate: zero PENDING/OPEN resolutions
+    # Ratchet gate: zero PENDING/OPEN resolutions + stability window
     if target_phase == 6:
         open_clrs = [
             k for k, v in domain_state.resolutions.items()
@@ -89,6 +89,15 @@ def can_advance(
         ]
         if open_clrs:
             return False, f"Cannot ratchet: {len(open_clrs)} open clarifications ({', '.join(open_clrs)})"
+
+        if domain_state.stability_window_days > 0 and domain_state.last_thesis_change:
+            from datetime import date
+
+            last_change = date.fromisoformat(domain_state.last_thesis_change)
+            days_elapsed = (date.today() - last_change).days
+            if days_elapsed < domain_state.stability_window_days:
+                remaining = domain_state.stability_window_days - days_elapsed
+                return False, f"Stability window: {remaining} days remaining (need {domain_state.stability_window_days}, elapsed {days_elapsed})"
 
     return True, "Gate passed"
 

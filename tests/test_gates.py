@@ -94,6 +94,47 @@ class TestCanAdvance:
         allowed, reason = can_advance("holdings", 6, state, tmp_path)
         assert allowed is True
 
+    def test_stability_window_blocks_when_too_recent(self, tmp_path: Path):
+        from datetime import date
+
+        state = _setup_project(
+            tmp_path,
+            phase=5,
+            stability_window_days=7,
+            last_thesis_change=date.today().isoformat(),
+        )
+        _create_phase_artefacts(tmp_path, "holdings", 5)
+        allowed, reason = can_advance("holdings", 6, state, tmp_path)
+        assert allowed is False
+        assert "stability window" in reason.lower()
+
+    def test_stability_window_passes_when_elapsed(self, tmp_path: Path):
+        from datetime import date, timedelta
+
+        past = (date.today() - timedelta(days=10)).isoformat()
+        state = _setup_project(
+            tmp_path,
+            phase=5,
+            stability_window_days=7,
+            last_thesis_change=past,
+        )
+        _create_phase_artefacts(tmp_path, "holdings", 5)
+        allowed, reason = can_advance("holdings", 6, state, tmp_path)
+        assert allowed is True
+
+    def test_stability_window_zero_allows_immediate(self, tmp_path: Path):
+        from datetime import date
+
+        state = _setup_project(
+            tmp_path,
+            phase=5,
+            stability_window_days=0,
+            last_thesis_change=date.today().isoformat(),
+        )
+        _create_phase_artefacts(tmp_path, "holdings", 5)
+        allowed, reason = can_advance("holdings", 6, state, tmp_path)
+        assert allowed is True
+
 
 class TestAdvancePhase:
     def test_increments_phase(self, tmp_path: Path):

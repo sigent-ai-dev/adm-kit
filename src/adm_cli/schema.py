@@ -21,6 +21,8 @@ class DomainState(BaseModel):
     iteration: Annotated[int, Field(ge=1)] = 1
     contract_version: str | None = None
     source_path: str | None = None
+    stability_window_days: Annotated[int, Field(ge=0)] = 0
+    last_thesis_change: str | None = None
     resolutions: dict[str, ResolutionStatus] = Field(default_factory=dict)
 
     @field_validator("contract_version")
