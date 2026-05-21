@@ -11,7 +11,7 @@ from pathlib import Path
 from pydantic import ValidationError
 from rich.console import Console
 
-from .init import PHASE_DIRS
+from .constants import PHASE_DIRS
 from .schema import ProjectState, ResolutionStatus
 
 
@@ -94,7 +94,7 @@ def _check_invariants(report: CheckReport, domain: str, current_phase: int, root
             report.add(Severity.WARNING, domain, f"Invariants: {last_line}")
     except subprocess.TimeoutExpired:
         report.add(Severity.WARNING, domain, "Invariants: timed out after 60s")
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:
         report.add(Severity.WARNING, domain, f"Invariants: execution error — {e}")
 
 

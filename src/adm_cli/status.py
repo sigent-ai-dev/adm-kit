@@ -7,17 +7,8 @@ from pathlib import Path
 from rich.console import Console
 from rich.table import Table
 
+from .constants import PHASE_NAMES
 from .schema import ResolutionStatus, load_state
-
-PHASE_NAMES = {
-    1: "Lineage",
-    2: "Inventory",
-    3: "Invariants",
-    4: "Thesis",
-    5: "Validate",
-    6: "Ratchet",
-    7: "Model",
-}
 
 
 def run_status(project_dir: Path | None = None) -> None:

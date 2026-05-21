@@ -34,10 +34,12 @@ def raise_clr(
     domain: str,
     state: ProjectState,
     state_path: Path,
-    question: str,
-    context: str | None = None,
 ) -> str:
-    """Raise a new clarification question. Returns the assigned CLR-NNN ID."""
+    """Raise a new open clarification and return the assigned CLR-NNN ID.
+
+    The question text and context are stored in artefact files by the
+    calling phase command, not in the state file.
+    """
     if domain not in state.domains:
         raise ValueError(f"Domain '{domain}' does not exist")
 

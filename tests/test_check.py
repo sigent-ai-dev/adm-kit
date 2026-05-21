@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from adm_cli.check import run_check
-from adm_cli.init import PHASE_DIRS
+from adm_cli.constants import PHASE_DIRS
 from adm_cli.schema import DomainState, ProjectState, ResolutionStatus, save_state
 
 

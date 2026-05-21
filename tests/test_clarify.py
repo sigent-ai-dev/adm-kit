@@ -47,14 +47,14 @@ class TestNextClrId:
 class TestRaiseClr:
     def test_raises_open(self, tmp_path: Path):
         state, state_path = _setup(tmp_path)
-        clr_id = raise_clr("holdings", state, state_path, "What does column X mean?")
+        clr_id = raise_clr("holdings", state, state_path)
         assert clr_id == "CLR-001"
         assert state.domains["holdings"].resolutions["CLR-001"] == ResolutionStatus.OPEN
 
     def test_sequential_ids(self, tmp_path: Path):
         state, state_path = _setup(tmp_path)
-        id1 = raise_clr("holdings", state, state_path, "Q1")
-        id2 = raise_clr("holdings", state, state_path, "Q2")
+        id1 = raise_clr("holdings", state, state_path)
+        id2 = raise_clr("holdings", state, state_path)
         assert id1 == "CLR-001"
         assert id2 == "CLR-002"
 
@@ -62,7 +62,7 @@ class TestRaiseClr:
         from adm_cli.schema import load_state
 
         state, state_path = _setup(tmp_path)
-        raise_clr("holdings", state, state_path, "Q1")
+        raise_clr("holdings", state, state_path)
         reloaded = load_state(state_path)
         assert "CLR-001" in reloaded.domains["holdings"].resolutions
 

@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from adm_cli.gates import advance_phase, can_advance
-from adm_cli.init import PHASE_DIRS
+from adm_cli.constants import PHASE_DIRS
 from adm_cli.schema import DomainState, ProjectState, ResolutionStatus, save_state
 
 

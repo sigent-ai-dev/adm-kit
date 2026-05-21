@@ -9,26 +9,8 @@ from pathlib import Path
 from rich.console import Console
 from rich.table import Table
 
+from .constants import AGENT_DIRS, PHASE_DIRS
 from .schema import DomainState, load_state, save_state
-
-AGENT_DIRS: dict[str, str] = {
-    "claude": ".claude/commands",
-    "gemini": ".gemini/commands",
-    "copilot": ".github/agents",
-    "cursor": ".cursor/commands",
-    "q": ".amazonq/prompts",
-    "windsurf": ".windsurf/workflows",
-}
-
-PHASE_DIRS = [
-    "1-lineage",
-    "2-inventory",
-    "3-invariants",
-    "4-thesis",
-    "5-validate",
-    "6-contracts",
-    "7-model",
-]
 
 
 def _templates_path() -> Path:

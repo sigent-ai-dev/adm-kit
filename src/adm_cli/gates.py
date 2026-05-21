@@ -7,7 +7,7 @@ from pathlib import Path
 
 import yaml
 
-from .init import PHASE_DIRS
+from .constants import PHASE_DIRS
 from .schema import ProjectState, ResolutionStatus, save_state
 
 

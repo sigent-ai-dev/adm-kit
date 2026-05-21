@@ -4,7 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from adm_cli.init import PHASE_DIRS, run_init
+from adm_cli.constants import PHASE_DIRS
+from adm_cli.init import run_init
 from adm_cli.schema import load_state
 
 
