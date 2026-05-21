@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import shutil
 from importlib import resources
 from pathlib import Path
 
 from rich.console import Console
 from rich.table import Table
 
+from .agents import adapt_command, command_filename
 from .constants import AGENT_DIRS, PHASE_DIRS
 from .schema import DomainState, load_state, save_state
 
@@ -63,9 +63,11 @@ def run_init(
     commands_src = templates / "commands"
     installed_commands: list[str] = []
     for cmd_file in sorted(commands_src.glob("*.md")):
-        dest = agent_dir / f"adm.{cmd_file.name}"
-        shutil.copy2(cmd_file, dest)
-        installed_commands.append(f"adm.{cmd_file.name}")
+        base_name = cmd_file.stem
+        adapted_content = adapt_command(cmd_file.read_text(), ai)
+        dest_name = command_filename(base_name, ai)
+        (agent_dir / dest_name).write_text(adapted_content)
+        installed_commands.append(dest_name)
 
     # Summary output
     console.print()
