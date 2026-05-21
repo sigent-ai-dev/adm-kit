@@ -1,8 +1,20 @@
 [project]
 name = "adm-cli"
-version = "0.0.1"
+version = "0.1.0"
 description = "ADM CLI, part of ADM Kit. A tool for Analysis-Driven Modelling — discover and version data schemas from messy sources."
 requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "Simon Gent"}]
+keywords = ["data-modelling", "schema-discovery", "cli", "pydantic", "data-migration"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+]
 dependencies = [
     "typer",
     "rich",
@@ -10,6 +22,11 @@ dependencies = [
     "platformdirs",
     "pyyaml>=6.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/sigent-ai-dev/adm-kit"
+Repository = "https://github.com/sigent-ai-dev/adm-kit"
+Issues = "https://github.com/sigent-ai-dev/adm-kit/issues"
 
 [project.scripts]
 adm = "adm_cli:main"

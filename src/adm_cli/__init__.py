@@ -4,7 +4,7 @@ Bootstrap and manage ADM projects: discover, validate, and version
 data schemas from messy real-world sources through seven sequential phases.
 """
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 
 from typing import Optional
 
